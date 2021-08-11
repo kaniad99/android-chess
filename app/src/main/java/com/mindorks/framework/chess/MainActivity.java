@@ -3,6 +3,7 @@ package com.mindorks.framework.chess;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -26,6 +27,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initView() {
-        binding.startButton.setOnClickListener(v -> viewModel.testToast());
+        binding.startButton.setOnClickListener(v -> showBoard(binding.getRoot()));
+    }
+
+    public void showBoard(View view){
+        Intent intent = new Intent(this, GameActivity.class);
+
+        startActivity(intent);
     }
 }
