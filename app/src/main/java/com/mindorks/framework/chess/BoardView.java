@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -47,6 +48,7 @@ public class BoardView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
+
 //        Rect rect = new Rect();
         Log.i(TAG, "SquareSize: "+ SQUARE_SIZE);
         SQUARE_SIZE = GameActivity.getBoardHeight()/8;
@@ -85,10 +87,14 @@ public class BoardView extends View {
             }
         }
 
-        if (center != null) {
+        if (center != null ) {
             paint.setColor(Color.BLUE);
             canvas.drawCircle(center[0], center[1], (float) ((float) SQUARE_SIZE * 0.45), paint);
         }
+
+        Drawable d = getResources().getDrawable(R.drawable.king, null);
+        d.setBounds(0,0,SQUARE_SIZE,SQUARE_SIZE);
+        d.draw(canvas);
 
 
         canvas.restore();
