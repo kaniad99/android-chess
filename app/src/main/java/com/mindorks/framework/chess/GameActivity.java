@@ -15,7 +15,7 @@ public class GameActivity extends AppCompatActivity {
 
     private ImageView board;
     private GameActivityViewModel viewModel;
-    private TextView fieldName;
+    private TextView fieldCors;
 
     private static final char[] COLUMNS = "ABCDEFGH".toCharArray();
     private static final char[] ROWS = "87654321".toCharArray();
@@ -29,7 +29,7 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.game_activity);
 
         board = findViewById(R.id.board);
-        fieldName = findViewById(R.id.fieldName);
+        fieldCors = findViewById(R.id.fieldName);
 
         viewModel = new ViewModelProvider(this).get(GameActivityViewModel.class);
         viewModel.getFieldLiveData().observe(this,
@@ -75,14 +75,13 @@ public class GameActivity extends AppCompatActivity {
             int y = (touchLocation[1] - boardLocation[1]) / (boardHeight / 8);
 
             Log.i(TAG, x + ", " + y);
-            char[] fieldName =  { COLUMNS[x], ROWS[y] };
-            String str = new String(fieldName);
-            Log.i(TAG, "Clicked field: " + COLUMNS[x] + ROWS[y]);
-            viewModel.setFieldName(str);
+            int[] cors = {x, y};
+
+            viewModel.clickedField(cors);
         }
     }
 
     private void onChanged(String field) {
-        fieldName.setText(field);
+        fieldCors.setText(field);
     }
 }

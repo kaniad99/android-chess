@@ -9,15 +9,16 @@
 
     <ImageView
         android:id="@+id/board"
-        android:layout_width="376dp"
-        android:layout_height="353dp"
+        android:layout_width="360dp"
+        android:layout_height="360dp"
         android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="8dp"
         android:foregroundGravity="center_vertical|center_horizontal"
         app:layout_constraintDimensionRatio="H,1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fieldName"
         app:srcCompat="@drawable/board" />
