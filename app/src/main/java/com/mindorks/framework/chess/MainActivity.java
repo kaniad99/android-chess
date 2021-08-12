@@ -5,11 +5,14 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.mindorks.framework.chess.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity";
 
     private ActivityMainBinding binding;
     private MainActivityViewModel viewModel;
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void showBoard(View view){
         Intent intent = new Intent(this, GameActivity.class);
-
+        Log.i(TAG, "Start button clicked");
         startActivity(intent);
     }
 }

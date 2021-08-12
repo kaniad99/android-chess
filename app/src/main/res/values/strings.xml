@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Chess</string>
     <string name="start_the_game">Start the game</string>
+    <string name="field_name">Field name</string>
 </resources>
