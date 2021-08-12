@@ -13,7 +13,7 @@ public class GameActivity extends AppCompatActivity {
 
     private static final String TAG = "GameActivity";
 
-    private ImageView board;
+    private BoardView board;
     private GameActivityViewModel viewModel;
     private TextView fieldCors;
 
@@ -21,6 +21,15 @@ public class GameActivity extends AppCompatActivity {
     private static final char[] ROWS = "87654321".toCharArray();
 
     private static int boardHeight;
+
+    public static int getBoardHeight() {
+        return boardHeight;
+    }
+
+    public static int getBoardWidth() {
+        return boardWidth;
+    }
+
     private static int boardWidth;
 
     @Override
@@ -28,16 +37,18 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
 
-        board = findViewById(R.id.board);
+        board = findViewById(R.id.boardView);
         fieldCors = findViewById(R.id.fieldName);
 
         viewModel = new ViewModelProvider(this).get(GameActivityViewModel.class);
         viewModel.getFieldLiveData().observe(this,
                 this::onChanged);
 
+        setBoard();
     }
 
     private void setBoard() {
+        board.getLayoutParams().height = board.getMeasuredHeight() / 8 * 8;
         boardHeight = board.getMeasuredHeight();
         boardWidth = board.getMeasuredWidth();
         Log.i(TAG, "boardSize: " + boardHeight + ", " + boardWidth);
@@ -57,8 +68,10 @@ public class GameActivity extends AppCompatActivity {
                 board.getLocationOnScreen(boardLocation);
                 Log.i(TAG, "Board position: ( " + boardLocation[0] + " , " + boardLocation[1] + " )");
                 Log.i(TAG, "Touch position: ( " + x + " , " + y + " )");
-                getSquareFromPosition(touchLocation, boardLocation);
-
+                int[] cors = getSquareFromPosition(touchLocation, boardLocation);
+                if(cors[0] != 69){
+                    viewModel.clickedField(cors);
+                };
             case MotionEvent.ACTION_MOVE:
             case MotionEvent.ACTION_UP:
 
@@ -66,19 +79,22 @@ public class GameActivity extends AppCompatActivity {
         return false;
     }
 
-    public void getSquareFromPosition(int[] touchLocation, int[] boardLocation) {
+    public int[] getSquareFromPosition(int[] touchLocation, int[] boardLocation) {
+        int[] ints;
         if (touchLocation[0] < boardLocation[0] || touchLocation[1] < boardLocation[1]
                 || touchLocation[0] - boardLocation[0] > boardWidth || touchLocation[1] - boardLocation[1] > boardHeight) {
             Log.i(TAG, "Touch outside the board");
+            ints = new int[]{69, 69};
         } else {
             int x = (touchLocation[0] - boardLocation[0]) / (boardWidth / 8);
             int y = (touchLocation[1] - boardLocation[1]) / (boardHeight / 8);
 
             Log.i(TAG, x + ", " + y);
-            int[] cors = {x, y};
-
-            viewModel.clickedField(cors);
+            ints = new int[]{x, y};
         }
+        return ints;
+
+
     }
 
     private void onChanged(String field) {

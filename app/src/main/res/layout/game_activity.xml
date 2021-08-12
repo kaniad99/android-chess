@@ -7,27 +7,26 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity" >
 
-    <ImageView
-        android:id="@+id/board"
-        android:layout_width="360dp"
-        android:layout_height="360dp"
-        android:layout_alignParentEnd="true"
-        android:layout_centerInParent="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
-        android:foregroundGravity="center_vertical|center_horizontal"
-        app:layout_constraintDimensionRatio="H,1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fieldName"
-        app:srcCompat="@drawable/board" />
+<!--    <ImageView-->
+<!--        android:id="@+id/board"-->
+<!--        android:layout_width="360dp"-->
+<!--        android:layout_height="360dp"-->
+<!--        android:layout_alignParentEnd="true"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginStart="8dp"-->
+<!--        android:layout_marginTop="36dp"-->
+<!--        android:layout_marginEnd="8dp"-->
+<!--        android:foregroundGravity="center_vertical|center_horizontal"-->
+<!--        app:layout_constraintDimensionRatio="H,1:1"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/fieldName"-->
+<!--        app:srcCompat="@drawable/board" />-->
 
     <TextView
         android:id="@+id/fieldName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/board"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
@@ -38,4 +37,18 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.mindorks.framework.chess.BoardView
+
+        android:id="@+id/boardView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="16dp"
+        android:foregroundGravity="center"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fieldName" />
 </androidx.constraintlayout.widget.ConstraintLayout>
